@@ -1,18 +1,11 @@
 const express = require('express');
-const app = express();
-const tasks = [
-    {
-      id: '123456',
-      isCompleted: false,
-      description: 'Walk the dog',
-    },
+const listViewRouter = require('./list-view-router');
+const listEditRouter = require('./list-edit-router');
 
-  ];
-  
-  app.get('/tasks', (req, res) => {
-    res.json(tasks);
-  });
-  
-  app.listen(3000, () => {
-  console.log('Servidor Express iniciado en el puerto 3000');
+const app = express();
+app.use('/list', listViewRouter);
+app.use('/list', listEditRouter);
+
+app.listen(3000, () => {
+  console.log('Servidor en ejecución en el puerto 3000');
 });
